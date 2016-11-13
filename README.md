@@ -24,3 +24,6 @@ Many thanks to both github contributors Alon Zakai and Sunny Goyal
 5. Copy the flow (&lt;nrsqljs&gt;/flows.json) in a new flow from node-Red admin. Deploy it
 
 You should be able to browse the Jade sqlite manager at http://127.0.0.1/jade
+
+There is no documentation to use JADE, but for one who knows SQL (sqlite) and already pratice Adminer.php it should not be to much of a pain.
+I have put some architecture notes [there](Architecture.md)
