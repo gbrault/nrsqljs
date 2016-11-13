@@ -9,6 +9,7 @@ In the version 0.1.0 of nrsqljs, the following JADE files have been tweaked
 * message.json: in fr, en and en-US added two commands and translation
 * sql.worker.js: load sqlr.js instead of sql.js
 * in third_party/sql added the sqlr.js file which do the webservice work
+* runsql.js: (components directory of Jade) Added an SQL template
 
 # How data is exchanged?
 sqlr.js implements the SQL interface as sql.js does. It implements the Database class with a subset of functions used by JADE.
