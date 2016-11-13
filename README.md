@@ -15,9 +15,10 @@ Many thanks to both github contributors Alon Zakai and Sunny Goyal
 ## Installation
 1. make sure node-red is stopped!
 2. go on your user node-red root directory (~/.node-red)
-```
-npm install https://github.com/gbrault/nrsqljs
-```
+
+  ```
+  npm install https://github.com/gbrault/nrsqljs
+  ```
 3. Copy Northwind.sqlite in your home directory (where you start node-red) (it's under &lt;nrsqljs&gt;/jade directory)
 4. Start your node-red server (best from the command line to see console messages)
 3. Copy the flow (&lt;nrsqljs&gt;/flows.json) in a new flow from node-Red admin. Deploy it
