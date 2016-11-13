@@ -1,0 +1,65 @@
+
+<script type="text/x-red" data-template-name="sqljsdb">
+    <div class="form-row">
+        <label for="node-config-input-db"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-config-input-db" placeholder="/tmp/sqljs">
+    </div>
+</script>
+
+<script type="text/javascript">
+    console.log("Register: sqljsdb");
+    RED.nodes.registerType('sqljsdb',{
+        category: 'config',
+        defaults: {
+            db: {value:"",required:true}
+        },
+        label: function() {
+            return this.db;
+        }
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="sqljs">
+    <div class="form-row">
+        <label for="node-input-mydb"><i class="fa fa-database"></i> Database</label>
+        <input type="text" id="node-input-mydb">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-loging"><i class="fa fa-tag"></i> Log</label>
+        <input type="checkbox" id="node-input-loging" placeholder="Log">
+    </div>    
+</script>
+
+<script type="text/x-red" data-help-name="sqljs">
+    <p>Allows basic access to a sqlite3 database using sql.js.</p>
+    <p>see <a href="https://github.com/kripken/sql.js" target="_blank">sql.js</a> for sql.js installation and API information<p>
+    <p><code>msg.topic</code> must hold the <i>query</i> for the database, and the result is returned in <code>msg.payload</code>.</p>        
+</script>
+
+<script type="text/javascript">
+    console.log("Register: sqljs");
+    RED.nodes.registerType('sqljs',{
+        category: 'storage-input',
+        color:"#FFC133",
+        defaults: {
+            mydb: {type:"sqljsdb",required:true},
+            name: {value:""},
+            loging:{value:"",required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "sqljs.png",
+        label: function() {
+            var dbNode = RED.nodes.node(this.mydb);
+            return this.name||(dbNode?dbNode.label():"sqljs");
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>

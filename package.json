@@ -1,0 +1,24 @@
+{
+    "name"          : "nrsqljs",
+    "version"       : "0.1.2",
+    "description"   : "An sql.js node for Node-RED with JADE Sql Manager",
+    "dependencies"  : {
+        "sql.js"   : "0.3.*"
+    },
+    "repository" : {
+        "type":"git",
+        "url":"https://github.com/gbrault/node-red-nodes/blob/master/storage/sqljs/"
+    },
+    "license": "Apache-2.0",
+    "keywords": [ "node-red", "sqljs" ],
+    "node-red"      : {
+        "nodes"     : {
+            "nrsqljs": "sqljs.js"
+        }
+    },
+    "author": {
+        "name": "Gilbert Brault",
+        "email": "gbrault@seadev.org",
+        "url": "https://github.com/gbrault"
+    }
+}
