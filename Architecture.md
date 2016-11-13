@@ -12,7 +12,7 @@ In the version 0.1.0 of nrsqljs, the following JADE files have been tweaked
 
 # How data is exchanged?
 sqlr.js implements the SQL interface as sql.js does. It implements the Database class with a subset of functions used by JADE.
-There is no need to open the Database, as this is done by the node at the servere side. Database class just provide acces to functions under the webservice implemented by the flow and the sqljs node.
+There is no need to open the Database, as this is done by the node at the servere side. Database class just provide access to functions under the webservice control implemented by the flow and the sqljs node on the server side.
 * export: write the database selected in the node back to disk (sql.js "holds" the Database in Memory)
 * prepare: send the prepare type request and return a stm proxy with the following function. maintain an handle for subsequent stm requests
  * run: send the stm run query and retorn the parsed response
