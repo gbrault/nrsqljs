@@ -2,7 +2,7 @@
 * sql.js is used as is and the last version is installed: see package.json, the dependency statement
 * JADE is transformed, as the origine of JADE is to be a web-based local Database Editor
 
-# JADE modification
+# JADE modifications
 In the version 0.1.0 of nrsqljs, the following JADE files have been tweaked
 * app.js: to avoid executing openDB and importSql functions
 * change the name of &#95;locales to &#95;locales&#95; as it was filtered by express???
