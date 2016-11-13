@@ -4,7 +4,7 @@
 # JADE modification
 In the version 0.1.0 of nrsqljs, the following JADE files have been tweaked
 * app.js: to avoid executing openDB and importSql functions
-* change the name of _ _locales to _locales_ as it was filtered by express???_
+* change the name of _ _locales to _locales_ _ as it was filtered by express???_
 * message.json: in fr, en and en-US added two commands and translation
 
 
