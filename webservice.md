@@ -61,3 +61,14 @@ R:{"status":"ok"}
 Q:hd p_657 free
 R:{"status":"ok"}
   ```
+
+2. SELECT CASE
+
+  ```
+Q:prepare:SELECT 'Test'.'text' from 'Test' WHERE 'Test'.'id' = ?;
+R:{"hd":"p_1199"}
+Q:hd p_1199 get:[4]
+R:["beige"]
+Q:hd p_1199 free
+R:{"status":"ok"}
+  ```
