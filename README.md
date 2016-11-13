@@ -18,8 +18,8 @@ Many thanks to both github contributors Alon Zakai and Sunny Goyal
 ```
 npm install https://github.com/gbrault/nrsqljs
 ```
-3. Copy Northwind.sqlite in your home directeory (where you start node-red) (it's under &lt;nrsqljs&gt/jade directory)
+3. Copy Northwind.sqlite in your home directeory (where you start node-red) (it's under &lt;nrsqljs&gt;/jade directory)
 4. Start your node-red server (best from the command line to see console messages)
-3. Copy the flow (&lt;nrsqljs&gt/flows.json) in a new flow from node-Red admin. Deploy it
+3. Copy the flow (&lt;nrsqljs&gt;/flows.json) in a new flow from node-Red admin. Deploy it
 
 You should be able to browse the Jade sqlite manager at http://127.0.0.1/jade
