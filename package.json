@@ -1,6 +1,6 @@
 {
     "name"          : "nrsqljs",
-    "version"       : "0.1.2",
+    "version"       : "0.1.0",
     "description"   : "An sql.js node for Node-RED with JADE Sql Manager",
     "dependencies"  : {
         "sql.js"   : "0.3.*"
