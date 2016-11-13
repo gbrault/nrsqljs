@@ -30,7 +30,7 @@ There is no need to open the Database, as this is done by the node at the server
  Like that, it will be possible to handle bigger databases.
  
 ## JADE improvments
- JADE is already very nice and handy, but many HMI aspect can be improved. It is already very good to strat sketching sql data  driven projects... 
+ JADE is already very nice and handy, but many HMI aspect can be improved. It is already very good to strat sketching sql data  driven projects...  
 
 
 
