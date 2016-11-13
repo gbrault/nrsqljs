@@ -1,4 +1,4 @@
-# Document query question - response format
+# Documenting query "question - response" format
 
 ## exec
 
