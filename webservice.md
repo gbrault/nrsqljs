@@ -3,14 +3,15 @@
 ## exec
 
   ```
- Q: exec: &lt;SQL STATEMENT: PRAGMA, SELECT...&gt;
- R: [ "columns": [&lt;"string"&gt;+]
+ Q: exec: <SQL STATEMENT: PRAGMA, SELECT...>
+ R: [ "columns": [<"string">+]
       "values": [
-                  [&lt;value&gt;+],
-                  [&lt;value&gt;+],
+                  [<value>+],
+                  [<value>+],
                   ...
                 ]
     ]
+  values has the same number of items than columns for each sub array = rows
   ```
 
  1. PRAGMA case
