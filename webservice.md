@@ -1,6 +1,18 @@
 # Document query question - response format
 
 ## exec
+
+  ```
+ Q: exec: &lt;SQL STATEMENT: PRAGMA, SELECT...&gt;
+ R: [ "columns": [&lt;"string"&gt;+]
+      "values": [
+                  [&lt;value&gt;+],
+                  [&lt;value&gt;+],
+                  ...
+                ]
+    ]
+  ```
+
  1. PRAGMA case
  
   ```
