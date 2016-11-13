@@ -38,6 +38,13 @@ General format of an exec sequence
      ]
   ```
   
+ 3. CREATE case
+ 
+   ```
+ Q:  exec:CREATE TABLE 'newTable' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'value' TEXT)
+ R: []
+  ```
+  
 ## prepare
 
 The format of a prepare sequence follow this pattern
@@ -51,7 +58,7 @@ Q:hd p_657 free
 R:{"status":"ok"}
   ```
   
-1. UPDATE CASE
+1. UPDATE  case  
 
   ```
 Q:prepare:UPDATE 'Test' SET 'text' = ? WHERE 'Test'.'id' = ?;
@@ -62,7 +69,7 @@ Q:hd p_657 free
 R:{"status":"ok"}
   ```
 
-2. SELECT CASE
+2. SELECT  case
 
   ```
 Q:prepare:SELECT 'Test'.'text' from 'Test' WHERE 'Test'.'id' = ?;
