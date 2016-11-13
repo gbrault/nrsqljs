@@ -2,6 +2,7 @@
 
 ## exec
  1. PRAGMA case
+ 
   ```
  Q: exec:PRAGMA table_info('Test')
  R: [{ "columns":["cid","name","type","notnull","dflt_value","pk"],
@@ -12,4 +13,5 @@
       }
      ]
   ```
+  
  2. SELECT case
