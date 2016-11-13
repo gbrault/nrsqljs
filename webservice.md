@@ -15,3 +15,11 @@
   ```
   
  2. SELECT case
+ 
+   ```
+ Q: exec:select * from 'Test'
+ R:  [{"columns":["id","text"],
+       "values":[[1,"purple"],[2,"jaune"],[3,"rose"],[4,"blanc"]]
+      }
+     ]
+  ```
