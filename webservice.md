@@ -13,3 +13,4 @@
       }
      ]
  ```
+ 2. SELECT case
