@@ -24,12 +24,12 @@ There is no need to open the Database, as this is done by the node at the server
  
 # Next Steps
  
- ## Database backend
+## Database backend
  sql.js has a nice feature: to be javascript based, but it has also a big drawback: it reads the database in memory.
  I will invetigate other sqlite backend for nodes to see if it can work from the file system, like sqlite3.exe does.
  Like that, it will be possible to handle bigger databases.
  
- ## JADE improvments
+## JADE improvments
  JADE is already very nice and handy, but many HMI aspect can be improved. It is already very good to strat sketching sql data  driven projects... 
 
 
