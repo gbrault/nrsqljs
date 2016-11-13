@@ -20,7 +20,7 @@ There is no need to open the Database, as this is done by the node at the server
  * get: send the stm get request with data if so, return the paresed json result
  * free: will free the stm structure labelled with the handle tag
  
- With this interface it seems all the needs of JADE seems covered
+ With this interface all JADE's needs seem covered
  
 # Next Steps
  
