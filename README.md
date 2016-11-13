@@ -13,7 +13,7 @@
 Many thanks to both github contributors Alon Zakai and Sunny Goyal 
 
 ## Installation
-```
 go on your user node-red root directory (~/.node-red)
+```
 npm install https://github.com/gbrault/nrsqljs
 ```
