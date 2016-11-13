@@ -1,5 +1,5 @@
 # Architecture
-* sql.js is used as is and the last version is installed: see package.json, the dependency statement
+* sql.js is used as is and the last 0.3.* version is installed (if not present): see package.json, the dependency statement
 * JADE is transformed, as the origine of JADE is to be a web-based local Database Editor
 
 # JADE modifications
