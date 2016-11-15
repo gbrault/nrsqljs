@@ -3,12 +3,13 @@
 
 ### What is in here?
 * A node-red node: nrsqljs
-* A node-red flow (flows.json) providing the /sqljs webservice to query the SQLITE database, based on sql.js
+* A node-red flow (flows.json) providing the /sqljs webservice to query the SQLITE database, based on sql.js or sqlite3 backends
 * An SQLITE data base manager or browser allowing to see, manipulate and create tables, it's based on JADE
 
 ### This work was possible thanks to
 * [sql.js](https://github.com/kripken/sql.js/)  SQLite compiled to JavaScript through Emscripten
 * [JADE](https://github.com/sunnygoyal/jade)  JAvascript based Database Editor
+* [sqlite3](https://github.com/mapbox/node-sqlite3) Asynchronous, non-blocking SQLite3 bindings for Node.js
 
 Many thanks to both github contributors Alon Zakai and Sunny Goyal 
 
