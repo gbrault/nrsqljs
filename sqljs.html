@@ -4,6 +4,11 @@
         <label for="node-config-input-db"><i class="fa fa-database"></i> Database</label>
         <input type="text" id="node-config-input-db" placeholder="/tmp/sqljs">
     </div>
+    </div>
+        <div class="form-row">
+        <label for="node-config-input-backend"><i class="fa fa-tag"></i> Backend</label>
+        <input type="checkbox" id="node-config-input-backend" placeholder="/tmp/sqljs">
+    </div> 
 </script>
 
 <script type="text/javascript">
@@ -11,7 +16,8 @@
     RED.nodes.registerType('sqljsdb',{
         category: 'config',
         defaults: {
-            db: {value:"",required:true}
+            db: {value:"",required:true},
+            backend:{value:"",required:true}  // i.e. sqlite3
         },
         label: function() {
             return this.db;
@@ -31,8 +37,7 @@
     </div>
     <div class="form-row">
         <label for="node-input-loging"><i class="fa fa-tag"></i> Log</label>
-        <input type="checkbox" id="node-input-loging" placeholder="Log">
-    </div>    
+        <input type="checkbox" id="node-input-loging" placeholder="Log">   
 </script>
 
 <script type="text/x-red" data-help-name="sqljs">
