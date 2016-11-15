@@ -11,7 +11,7 @@
 * [JADE](https://github.com/sunnygoyal/jade)  JAvascript based Database Editor
 * [sqlite3](https://github.com/mapbox/node-sqlite3) Asynchronous, non-blocking SQLite3 bindings for Node.js
 
-Many thanks to both github contributors Alon Zakai and Sunny Goyal 
+Many thanks to both github contributors Alon Zakai and Sunny Goyal and the company Mapbox (sqlite3) 
 
 ## Installation
 1. make sure node-red is stopped!
