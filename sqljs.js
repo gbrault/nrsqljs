@@ -243,23 +243,23 @@ module.exports = function (RED) {
                                                             node.mydbConfig.db.serialize(function () {
                                                                 stm.get("", function (err, row) {
                                                                     if (err) {
-                                                                        node.error(err, msg);
+                                                                        this.error(err, msg);
                                                                     } else {                                                                        
                                                                         msg.payload = this.transcode(row);
                                                                         log(this, JSON.stringify(msg.payload));
                                                                         this.send(msg);
                                                                     }
                                                                 }.bind(this));
-                                                            });
+                                                            }.bind(node));
                                                         } else {
                                                             node.mydbConfig.db.serialize(function () {
                                                                 stm.get(JSON.parse(msg.topic), function (err, row) {
                                                                     if (err) {
-                                                                        node.error(err, msg);
+                                                                        this.error(err, msg);
                                                                     } else {
                                                                         msg.payload = this.transcode(row);
-                                                                        log(node, JSON.stringify(msg.payload));
-                                                                        node.send(msg);
+                                                                        log(this, JSON.stringify(msg.payload));
+                                                                        this.send(msg);
                                                                     }
                                                                 }.bind(node));
                                                             });
