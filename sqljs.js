@@ -165,7 +165,7 @@ module.exports = function (RED) {
                                     } else {
                                         node.mydbConfig.db.serialize(function () {
                                             stm = node.mydbConfig.db.prepare(msg.topic);
-                                        });
+                                        }.bind(node));
                                     }
                                     var index = Math.floor((Math.random() * 10000) + 1); // Object.keys(node.stm).length;
                                     log(node, "prepare: hd=", 'p_' + index),
@@ -187,7 +187,7 @@ module.exports = function (RED) {
                                             } else {
                                                 node.mydbConfig.db.serialize(function () {
                                                     stm.run(JSON.parse(msg.topic));
-                                                });
+                                                }.bind(node));
                                             }
                                             msg.payload = { status: 'ok' };
                                             log(node, JSON.stringify(msg.payload));
@@ -261,7 +261,7 @@ module.exports = function (RED) {
                                                                         log(node, JSON.stringify(msg.payload));
                                                                         node.send(msg);
                                                                     }
-                                                                });
+                                                                }.bind(node));
                                                             });
                                                         }
                                                     }
@@ -281,8 +281,9 @@ module.exports = function (RED) {
                                                             stm.free();
                                                         } else{
                                                             node.mydbConfig.db.serialize(function () {
+                                                                var stm = this.stm[msg.hd];
                                                                 stm.finalize();
-                                                            });
+                                                            }.bind(node));
                                                         }
                                                         delete node.stm[msg.hd];
                                                         msg.payload = { status: 'ok' };
