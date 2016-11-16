@@ -86,7 +86,7 @@ module.exports = function (RED) {
             node.status({fill:"green",shape:"dot",text:"backend sql.js"});
         } else {
             node.status({fill:"green",shape:"dot",text:"backend sqlite3.js"});
-        }
+        }        
 
         /* transform an array of objects into two arrays
         */
@@ -121,6 +121,7 @@ module.exports = function (RED) {
         if (this.mydbConfig) {
             this.mydbConfig.doConnect();
             node.on("input", function (msg) {
+                this.msg = msg;
                 if ((typeof msg.topic === 'string') && (typeof msg.type === 'string')) {
                     if (msg.type === "export") {
                         if (node.mydbConfig.backend) {
@@ -241,24 +242,26 @@ module.exports = function (RED) {
                                                     } else {
                                                         if (msg.topic === "") {
                                                             node.mydbConfig.db.serialize(function () {
+                                                                var stm = this.stm[this.msg.hd];
                                                                 stm.get("", function (err, row) {
                                                                     if (err) {
-                                                                        this.error(err, msg);
+                                                                        this.error(err, this.msg);
                                                                     } else {                                                                        
-                                                                        msg.payload = this.transcode(row);
-                                                                        log(this, JSON.stringify(msg.payload));
-                                                                        this.send(msg);
+                                                                        this.msg.payload = this.transcode(row);
+                                                                        log(this, JSON.stringify(this.msg.payload));
+                                                                        this.send(this.msg);
                                                                     }
                                                                 }.bind(this));
                                                             }.bind(node));
                                                         } else {
                                                             node.mydbConfig.db.serialize(function () {
+                                                                var stm = this.stm[msg.hd];
                                                                 stm.get(JSON.parse(msg.topic), function (err, row) {
                                                                     if (err) {
-                                                                        this.error(err, msg);
+                                                                        this.error(err, this.msg);
                                                                     } else {
-                                                                        msg.payload = this.transcode(row);
-                                                                        log(this, JSON.stringify(msg.payload));
+                                                                        this.msg.payload = this.transcode(row);
+                                                                        log(this, JSON.stringify(this.msg.payload));
                                                                         this.send(msg);
                                                                     }
                                                                 }.bind(node));
