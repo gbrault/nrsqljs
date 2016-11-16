@@ -49,12 +49,12 @@ module.exports = function (RED) {
             log(node, "backend switch = ", this.backend);
             try {
                 if (this.backend === true) {
-                    log(node, "connect to:", node.dbname, " backend sql.js");
+                    log(node, "connect to:", node.dbname, " backend sql.js");                    
                     filebuffer = fs.readFileSync(node.dbname);
                     node.db = new SQL.Database(filebuffer);
                 } else {
                     log(node, "./ = %s", path.resolve("./"));
-                    log(node, "connect to:", node.dbname, " backend sqlite3.js");
+                    log(node, "connect to:", node.dbname, " backend sqlite3.js");                    
                     node.db = new SQL3.Database(node.dbname);
                 }
                 if (node.tick) { clearTimeout(node.tick); }
@@ -82,6 +82,11 @@ module.exports = function (RED) {
         this.loging = n.loging;
         this.mydb = n.mydb;
         this.mydbConfig = RED.nodes.getNode(this.mydb);
+        if (node.mydbConfig.backend) {
+            node.status({fill:"green",shape:"dot",text:"backend sql.js"});
+        } else {
+            node.status({fill:"green",shape:"dot",text:"backend sqlite3.js"});
+        }
 
         /* transform an array of objects into two arrays
         */
