@@ -5,7 +5,7 @@
     "dependencies"  : {
         "sql.js"    : "0.3.*",
 		"express"   : "4.*.*",
-		"sqlite3	: "3.1.*"
+		"sqlite3"	: "3.1.*"
     },
     "repository" : {
         "type":"git",
