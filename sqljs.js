@@ -78,7 +78,7 @@ module.exports = function (RED) {
     function SqljsNodeIn(n) {
         RED.nodes.createNode(this, n);
         var node = this;
-
+        node.stm = {};
         this.loging = n.loging;
         this.mydb = n.mydb;
         this.mydbConfig = RED.nodes.getNode(this.mydb);
@@ -157,9 +157,6 @@ module.exports = function (RED) {
                             if (msg.type === "prepare") {
                                 try {
                                     var stm = {};
-                                    if (node.stm === undefined) {
-                                        node.stm = {};
-                                    }
                                     log(node, "prepare:", msg.topic);
                                     if (node.mydbConfig.backend) {
                                         stm = node.mydbConfig.db.prepare(msg.topic);
@@ -187,6 +184,7 @@ module.exports = function (RED) {
                                                 stm.run(JSON.parse(msg.topic));
                                             } else {
                                                 node.mydbConfig.db.serialize(function () {
+                                                    var stm = this.stm[this.msg.hd];
                                                     stm.run(JSON.parse(msg.topic));
                                                 }.bind(node));
                                             }
@@ -264,8 +262,8 @@ module.exports = function (RED) {
                                                                         log(this, JSON.stringify(this.msg.payload));
                                                                         this.send(msg);
                                                                     }
-                                                                }.bind(node));
-                                                            });
+                                                                }.bind(this));
+                                                            }.bind(node));
                                                         }
                                                     }
                                                 } else {
