@@ -49,12 +49,12 @@ module.exports = function (RED) {
             log(node, "backend switch = ", this.backend);
             try {
                 if (this.backend === true) {
-                    log(node, "connect to:", node.dbname, " backend sql.js");                    
+                    log(node, "connect to:", node.dbname, " backend sql.js");
                     filebuffer = fs.readFileSync(node.dbname);
                     node.db = new SQL.Database(filebuffer);
                 } else {
                     log(node, "./ = %s", path.resolve("./"));
-                    log(node, "connect to:", node.dbname, " backend sqlite3.js");                    
+                    log(node, "connect to:", node.dbname, " backend sqlite3.js");
                     node.db = new SQL3.Database(node.dbname);
                 }
                 if (node.tick) { clearTimeout(node.tick); }
@@ -83,10 +83,10 @@ module.exports = function (RED) {
         this.mydb = n.mydb;
         this.mydbConfig = RED.nodes.getNode(this.mydb);
         if (node.mydbConfig.backend) {
-            node.status({fill:"green",shape:"dot",text:"backend sql.js"});
+            node.status({ fill: "green", shape: "dot", text: "backend sql.js" });
         } else {
-            node.status({fill:"green",shape:"dot",text:"backend sqlite3.js"});
-        }        
+            node.status({ fill: "green", shape: "dot", text: "backend sqlite3.js" });
+        }
 
         /* transform an array of objects into two arrays
         */
@@ -101,18 +101,18 @@ module.exports = function (RED) {
                     }
                     arows.push(trow);
                 }
-                return [{ "columns": colnames, "values": arows }];
+                return { "columns": colnames, "values": arows };
             } else {
-                return [{ "columns": [], "values": [] }];
+                return { "columns": [], "values": [] };
             }
         };
 
         /* transform a row into an array
         */
-        this.transcode =function(row){
+        this.transcode = function (row) {
             var keys = Object.keys(row);
-            var tmp =[];
-            for(var i=0; i<keys.length; i++){                
+            var tmp = [];
+            for (var i = 0; i < keys.length; i++) {
                 tmp.push(row[keys[i]]);
             }
             return tmp;
@@ -140,15 +140,40 @@ module.exports = function (RED) {
                                     log(node, JSON.stringify(msg.payload));
                                     node.send(msg);
                                 } else {
-                                    node.mydbConfig.db.all(msg.topic, function (err, rows) {
-                                        if (err) {
-                                            node.error(err, msg);
+                                    /* if I have multiple sql statement I need to execute them step by step and return all results*/
+                                    node.statements = msg.topic.split(";");                                    
+                                    node.statement_index = 0;
+                                    node.results = [];
+                                    node.exec = function () {                                        
+                                        var part = this.statements[this.statement_index].trim() + ";";
+                                        if (part !== ";") {
+                                            log(this,this.statement_index, ":", part);
+                                            node.mydbConfig.db.all(part, function (err, rows) {
+                                                this.statement_index++;
+                                                if (err) {
+                                                    node.error(err, msg);
+                                                } else {
+                                                    var factor = this.factorize(rows);
+                                                    this.results.push(factor);                                                    
+                                                    if (this.statement_index === this.statements.length) {
+                                                        log(this,JSON.stringify(this.results));
+                                                        msg.payload = this.results;
+                                                        this.send(msg);
+                                                    } else {
+                                                        this.exec();
+                                                    }
+                                                }
+                                            }.bind(this));
                                         } else {
-                                            msg.payload = this.factorize(rows);
-                                            log(node, JSON.stringify(msg.payload));
-                                            this.send(msg);
+                                            this.statement_index++;
+                                            if (this.statement_index === this.statements.length) {
+                                                log(this,JSON.stringify(this.results));
+                                                msg.payload = this.results;
+                                                this.send(msg);
+                                            }
                                         }
-                                    }.bind(node));
+                                    }.bind(node);
+                                    node.exec();
                                 }
                             } catch (err) {
                                 node.error(err, msg);
@@ -224,11 +249,11 @@ module.exports = function (RED) {
                                     } else
                                         if (msg.type === "get") {
                                             try {
-                                                if ((node.stm !== undefined) && (node.stm[msg.hd] !== undefined)) {                                                    
+                                                if ((node.stm !== undefined) && (node.stm[msg.hd] !== undefined)) {
                                                     var stm = node.stm[msg.hd];
                                                     var result;
                                                     if (node.mydbConfig.backend) {
-                                                        log(node, "hd ", msg.hd, " get:", msg.topic," sql.js");
+                                                        log(node, "hd ", msg.hd, " get:", msg.topic, " sql.js");
                                                         if (msg.topic === "") {
                                                             result = stm.get();
                                                         } else {
@@ -240,12 +265,12 @@ module.exports = function (RED) {
                                                     } else {
                                                         if (msg.topic === "") {
                                                             node.mydbConfig.db.serialize(function () {
-                                                                log(node, "hd ", msg.hd, " get:", msg.topic," sqlite3.js");
+                                                                log(node, "hd ", msg.hd, " get:", msg.topic, " sqlite3.js");
                                                                 var stm = this.stm[this.msg.hd];
                                                                 stm.get("", function (err, row) {
                                                                     if (err) {
                                                                         this.error(err, this.msg);
-                                                                    } else {                                                                        
+                                                                    } else {
                                                                         this.msg.payload = this.transcode(row);
                                                                         log(this, JSON.stringify(this.msg.payload));
                                                                         this.send(this.msg);
@@ -257,7 +282,7 @@ module.exports = function (RED) {
                                                                 log(this, "hd ", msg.hd, " get:", msg.topic, " sqlite3.js");
                                                                 var stm = this.stm[msg.hd];
                                                                 var q = JSON.parse(msg.topic);
-                                                                log(this,"q=",JSON.stringify(q));
+                                                                log(this, "q=", JSON.stringify(q));
                                                                 stm.get(q, function (err, row) {
                                                                     if (err) {
                                                                         this.error(err, this.msg);
@@ -284,7 +309,7 @@ module.exports = function (RED) {
                                                         var stm = node.stm[msg.hd];
                                                         if (node.mydbConfig.backend) {
                                                             stm.free();
-                                                        } else{
+                                                        } else {
                                                             node.mydbConfig.db.serialize(function () {
                                                                 var stm = this.stm[msg.hd];
                                                                 stm.finalize();
