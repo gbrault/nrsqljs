@@ -112,8 +112,8 @@ module.exports = function (RED) {
         this.transcode =function(row){
             var keys = Object.keys(row);
             var tmp =[];
-            for(var key in keys){
-                tmp.push(row[key]);
+            for(var i=0; i<keys.length; i++){                
+                tmp.push(row[keys[i]]);
             }
             return tmp;
         };
@@ -224,11 +224,11 @@ module.exports = function (RED) {
                                     } else
                                         if (msg.type === "get") {
                                             try {
-                                                if ((node.stm !== undefined) && (node.stm[msg.hd] !== undefined)) {
-                                                    log(node, "hd", msg.hd, " get:", msg.topic);
+                                                if ((node.stm !== undefined) && (node.stm[msg.hd] !== undefined)) {                                                    
                                                     var stm = node.stm[msg.hd];
                                                     var result;
                                                     if (node.mydbConfig.backend) {
+                                                        log(node, "hd ", msg.hd, " get:", msg.topic," sql.js");
                                                         if (msg.topic === "") {
                                                             result = stm.get();
                                                         } else {
@@ -240,6 +240,7 @@ module.exports = function (RED) {
                                                     } else {
                                                         if (msg.topic === "") {
                                                             node.mydbConfig.db.serialize(function () {
+                                                                log(node, "hd ", msg.hd, " get:", msg.topic," sqlite3.js");
                                                                 var stm = this.stm[this.msg.hd];
                                                                 stm.get("", function (err, row) {
                                                                     if (err) {
@@ -253,8 +254,11 @@ module.exports = function (RED) {
                                                             }.bind(node));
                                                         } else {
                                                             node.mydbConfig.db.serialize(function () {
+                                                                log(this, "hd ", msg.hd, " get:", msg.topic, " sqlite3.js");
                                                                 var stm = this.stm[msg.hd];
-                                                                stm.get(JSON.parse(msg.topic), function (err, row) {
+                                                                var q = JSON.parse(msg.topic);
+                                                                log(this,"q=",JSON.stringify(q));
+                                                                stm.get(q, function (err, row) {
                                                                     if (err) {
                                                                         this.error(err, this.msg);
                                                                     } else {
