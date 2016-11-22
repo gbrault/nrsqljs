@@ -36,3 +36,5 @@ the flow to embbed JADE into node-red
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-flow.png)
 Open the JADE Sqlite manager (http://localhost/jade)
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-JADE.png)
+Open one of the Database table (Employee) clicking on the table name
+![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-Employee.png)
