@@ -26,7 +26,11 @@ Many thanks to both github contributors Alon Zakai and Sunny Goyal and the compa
 
 You should be able to browse the Jade sqlite manager at http://127.0.0.1/jade
 
-There is no documentation to use JADE, but for one who knows SQL (sqlite) and already pratice Adminer.php it should not be to much of a pain.
+There is no documentation to use JADE, but for one who knows SQL (sqlite) and already pratice Adminer.php it should not be too much of a pain.
 I have put some architecture notes [there](Architecture.md)
 
 Don't forget to save your change clicking on the disk icon, upper left just under JADE!
+
+## Usage
+the flow to embbed JADE into node-red
+![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-flow.png)
