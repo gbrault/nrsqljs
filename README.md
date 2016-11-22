@@ -40,5 +40,7 @@ Open one of the Database table (Employee) clicking on the table name
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-Employee.png)
 To change any field in the table, double click on a cell (FirstName in this example)
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-Employee-Change%20-FirstName.png)
-Clicking on the cogwheel you can see the structure of the table
+Clicking on the cogwheel you can see the structure of the table (but cannot change it with this version)
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-Employee-structure.png)
+To create a new table, use the slider for tables an click on +table
+![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-create-table-1.png)
