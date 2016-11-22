@@ -38,3 +38,5 @@ Open the JADE Sqlite manager (http://localhost/jade)
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-JADE.png)
 Open one of the Database table (Employee) clicking on the table name
 ![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-Employee.png)
+To change any field in the table, double click on a cell (FirstName in this example)
+![alt-img](https://raw.githubusercontent.com/gbrault/nrsqljs/master/doc/node-red-nrsqljs-open-Employee-Change%20-FirstName.png)
